@@ -3,5 +3,5 @@
 
 <body>
 <h2>Estes são os códigos do exercicio do Leetcode.</h2>
-  <p>O primeiro arquivo "trab1" foi o código feito em aula e o arquivo "trabFinal" foi o feito em casa, o trabalho final foi testado no Dr. Memory e não teve nanhum problema de memória ja o primeiro teve 6 vazamentos.</p>
+  <p>Os arquivos "trab1" e "trabFinal" são referentes ao primeiro trabalho pedido e o arquivo "trab2" é referente ao segundo!</p>
 </body>

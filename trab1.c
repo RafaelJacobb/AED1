@@ -1,74 +1,40 @@
-#include <stdio.h>
-#include <string.h>
+// Definição da estrutura de um nó de árvore binária
+struct TreeNode {
+  int val;
+  struct TreeNode *left;
+  struct TreeNode *right;
+};
 
-// Função para verificar se um caractere é maiúsculo
-int ehMaiusculo(char c) {
-    return c >= 'A' && c <= 'Z';
+// Função auxiliar que retorna a profundidade e o pai de um nó dado um valor
+void getDepthAndParent(struct TreeNode* root, int x, int* depth, struct TreeNode** parent) {
+  // Caso base: a raiz é nula ou tem o valor procurado
+  if (root == NULL || root->val == x) {
+    return;
+  }
+  
+  // Se o filho esquerdo ou direito da raiz tem o valor procurado, atualiza a profundidade e o pai
+  if ((root->left != NULL && root->left->val == x) || (root->right != NULL && root->right->val == x)) {
+    *depth += 1;
+    *parent = root;
+    return;
+  }
+  
+  // Recursivamente procura o valor nos subárvores esquerda e direita, incrementando a profundidade
+  *depth += 1;
+  getDepthAndParent(root->left, x, depth, parent);
+  getDepthAndParent(root->right, x, depth, parent);
 }
 
-// Função para verificar se um caractere é minúsculo
-int ehMinusculo(char c) {
-    return c >= 'a' && c <= 'z';
-}
-
-// Função para verificar se uma string é "nice"
-int ehNice(char *s, int inicio, int fim) {
-    int maiusculos[26] = {0}; // Array para rastrear letras maiúsculas
-    int minusculos[26] = {0}; // Array para rastrear letras minúsculas
-
-    // Percorre a substring de s e marca as letras encontradas nos arrays
-    for (int i = inicio; i <= fim; i++) {
-        if (ehMaiusculo(s[i])) {
-            maiusculos[s[i] - 'A'] = 1;
-        } else if (ehMinusculo(s[i])) {
-            minusculos[s[i] - 'a'] = 1;
-        }
-    }
-
-    // Verifica se todas as letras do alfabeto estão presentes em pares (maiúscula e minúscula)
-    for (int i = 0; i < 26; i++) {
-        if ((maiusculos[i] == 1 && minusculos[i] == 0) ||
-            (maiusculos[i] == 0 && minusculos[i] == 1)) {
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
-// Função para encontrar a maior substring "nice" em s
-char* maiorSubstringNice(char *s) {
-    int tamanho = strlen(s);
-    int inicio = 0, fim = 0;
-    int tamMaximo = 0;
-
-    // Percorre todas as substrings possíveis de s
-    for (int i = 0; i < tamanho; i++) {
-        for (int j = i; j < tamanho; j++) {
-            // Verifica se a substring é "nice" e atualiza o tamanho máximo encontrado
-            if (ehNice(s, i, j) && (j - i + 1) > tamMaximo) {
-                tamMaximo = j - i + 1;
-                inicio = i;
-                fim = j;
-            }
-        }
-    }
-
-    // Cria a substring "nice" encontrada
-    char *resultado = malloc(sizeof(char) * (tamMaximo + 1));
-    strncpy(resultado, s + inicio, tamMaximo);
-    resultado[tamMaximo] = '\0';
-
-    return resultado;
-}
-
-int main() {
-    char s[] = "c";
-    char *resultado = maiorSubstringNice(s);
-
-    printf("Maior substring nice: %s\n", resultado);
-
-    free(resultado); // Libera a memória alocada para a substring
-
-    return 0;
+// Função principal que verifica se dois nós são primos
+bool isCousins(struct TreeNode* root, int x, int y) {
+  // Declara variáveis para armazenar a profundidade e o pai de cada nó
+  int depthX = 0, depthY = 0;
+  struct TreeNode* parentX = NULL, *parentY = NULL;
+  
+  // Obtém a profundidade e o pai de cada nó usando a função auxiliar
+  getDepthAndParent(root, x, &depthX, &parentX);
+  getDepthAndParent(root, y, &depthY, &parentY);
+  
+  // Retorna verdadeiro se as profundidades são iguais e os pais são diferentes, ou falso caso contrário
+  return (depthX == depthY) && (parentX != parentY);
 }

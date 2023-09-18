@@ -1,10 +1,7 @@
-<h1>Trabalho Avaliativo 03</h1>
-<h2>AED 1 - LeetCode 993</h2>
+<h1>Trabalho Avaliativo Algoritimos e Estruturas de Dados</h1>
+<h2>Rafael Jacob de Melo - 22104335</h2>
 
-<strong>Considerações sobre o código feito em aula: </strong>Em aula eu não consegui terminar o código.
-
-<strong>Considerações sobre o código feito em casa: </strong>Em casa eu terminei o código que anteriormente não funcionava para todos os casos sugeridos.
-
-<strong>Considerações sobre o DR.Memory: </strong>Testei no Dr.Memory e não teve nenhum problema, apenas problemas que já aparecem no Dr.memory. 
+<strong>Trabalhos do leet code feitos em aula/casa</strong>
+<p>neste repositório esta armazenado todos os desafios pedidos em aula, os arquivos estão nomeados como trab1/3/4,estão na ordem feita no e-aula, todos foram testados no dr.memory</p>
 
 
